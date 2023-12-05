@@ -1,6 +1,8 @@
 package bridge.view.input;
 
 import bridge.view.input.converter.ReadBridgeSizeConverter;
+import bridge.view.input.converter.ReadMoveToPositionConverter;
+import bridge.view.input.converter.ReadRetryConverter;
 import bridge.view.output.OutputView;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -32,13 +34,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        outputView.printReadMoveToPositionMessage();
+        return ReadMoveToPositionConverter.convertMoveToPosition(readLine());
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        outputView.printRetryMessage();
+        return ReadRetryConverter.convertRetryCommend(readLine());
     }
 }

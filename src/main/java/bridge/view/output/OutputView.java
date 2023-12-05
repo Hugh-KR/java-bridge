@@ -1,5 +1,6 @@
 package bridge.view.output;
 
+import bridge.dto.PositionDto;
 import bridge.view.output.message.OutputMessage;
 
 /**
@@ -20,12 +21,18 @@ public class OutputView {
         printMessage(OutputMessage.READ_BRIDGE_SIZE_MESSAGE);
     }
 
+    public void printReadMoveToPositionMessage() {
+        printEmptyLine();
+        printMessage(OutputMessage.READ_MOVE_POSITION_MESSAGE);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(final PositionDto positionDto) {
+        printMessage(positionDto.toString());
     }
 
     /**
@@ -34,6 +41,20 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+    }
+
+    public void printRetryMessage() {
+        printEmptyLine();
+        printMessage(OutputMessage.READ_GAME_RE_TRY_MESSAGE);
+    }
+
+    public void printFailResult(final PositionDto positionDto) {
+        printEmptyLine();
+        printMessage(String.format(
+                OutputMessage.PRINT_GAME_FAIL_MESSAGE.getMessage(),
+                positionDto.toString(),
+                positionDto.getCount()
+        ));
     }
 
     public void printEmptyLine() {

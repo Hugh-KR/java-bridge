@@ -31,17 +31,30 @@ public class BridgeMaker {
         final List<String> defaultBridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             final int randomNumber = bridgeNumberGenerator.generate();
-            defaultBridge.add(makeMoveToPosition(randomNumber));
+            defaultBridge.add(makeDefaultPosition(randomNumber));
         }
         return defaultBridge;
     }
 
-    public String makeMoveToPosition(final int randomNumber) {
+    public String makeDefaultPosition(final int randomNumber) {
         if (randomNumber == Constant.CONDITION_OF_MOVE_TO_UP) {
             return Constant.POSITION_OF_MOVE_TO_UP;
         }
         return Constant.POSITION_OF_MOVE_TO_DOWN;
     }
+
+    public List<String> makeUserPosition(final List<String> positions) {
+        String upPosition = "";
+        String downPosition = "";
+        for (String position : positions) {
+            System.out.println(position);
+            upPosition += position.charAt(0);
+            downPosition += position.charAt(1);
+        }
+        return List.of(upPosition, downPosition);
+    }
+
+
 
     public List<String> getDefaultBridge() {
         return this.defaultBridge;
